@@ -62,7 +62,7 @@ namespace Pattern_mvvm
         {
             set 
             {
-                Model.a = value;
+                    Model.a = value;
             }
         }
 
@@ -70,7 +70,14 @@ namespace Pattern_mvvm
         {
             set
             {
-                Model.b = value;
+                if (value == 0)
+                {
+                    //вывод предупреждения в текстовое поле добавить на ноль делить нельзя!
+                }
+                else
+                {
+                    Model.b = value;
+                }
             }
         }
 
