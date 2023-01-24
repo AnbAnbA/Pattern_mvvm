@@ -15,5 +15,6 @@ namespace Pattern_mvvm
         public static double a;
         public static double b;
         public static double res;
+        public static string error;
     }
 }

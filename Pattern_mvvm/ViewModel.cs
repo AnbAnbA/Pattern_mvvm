@@ -10,6 +10,8 @@ namespace Pattern_mvvm
 {
     internal class ViewModel: INotifyPropertyChanged
     {
+        public int o = 0;
+        public int t = 0;
         public event PropertyChangedEventHandler PropertyChanged;
         public List<string> CombCH 
         {
@@ -70,14 +72,7 @@ namespace Pattern_mvvm
         {
             set
             {
-                if (value == 0)
-                {
-                    //вывод предупреждения в текстовое поле добавить на ноль делить нельзя!
-                }
-                else
-                {
                     Model.b = value;
-                }
             }
         }
 
@@ -89,10 +84,19 @@ namespace Pattern_mvvm
                 return Model.res.ToString();
             }
         }
+
+        public string ResError
+        {
+            get
+            {
+                return Model.error;
+            }
+        }
         public CommandBinding bind;
         public RoutedCommand command { get; set; }=new RoutedCommand();
         public void Command_Executed(object sender, ExecutedRoutedEventArgs e) 
         {
+            
             if (cbInd == -1)
             {
                 Model.res = Convert.ToDouble(null);
@@ -111,13 +115,22 @@ namespace Pattern_mvvm
             }
             else if (cbInd == 3)
             {
-                Model.res = Model.a / Model.b; 
+                if (Model.b == 0)
+                {
+                    Model.res = 0;
+                    Model.error = "На ноль делить нельзя!";
+                }
+                else 
+                {
+                   Model.res = Model.a / Model.b; 
+                }
             }
             else
             {
                Model.res = Convert.ToDouble(null);
             }
             PropertyChanged(this, new PropertyChangedEventArgs("ResChange"));
+            PropertyChanged(this, new PropertyChangedEventArgs("ResError"));
         }
         public ViewModel() 
         {

@@ -16,6 +16,7 @@
             <Button Command="{Binding command}" Content="Вычислить" ></Button>
             <TextBlock Text="Результат:"></TextBlock>
             <TextBlock Text="{Binding ResChange}"></TextBlock>
+            <TextBlock Text="{Binding ResError}"></TextBlock>
         </StackPanel>
     </Grid>
 </Window>
